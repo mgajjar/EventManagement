@@ -15,6 +15,7 @@
     <tr *ngFor="let event of eventsData; let i = index">
       <td>{{ event.title }}</td>
       <td>{{ event.fromDate }} to {{ event.toDate }}</td>
+      <td *ngIf="!event.allDay">{{ event.fromDate }} ( {{ event.fromTime }}  ) to ({{ event.toTime }}) {{ event.toDate }}</td>
       <td>{{ event.location }}</td>
       <td>{{ event.email }}</td>
       <td>{{ event.description }}</td>
