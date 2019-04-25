@@ -1,0 +1,26 @@
+<button type="button" routerLink="/add" class="btn btn-primary btnpadding">Back</button>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Event Date & Time</th>
+      <th scope="col">Location</th>
+      <th scope="col">Email</th>
+      <th scope="col">Description</th>
+      <th scope="col">Guest</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let event of eventsData; let i = index">
+      <td>{{ event.title }}</td>
+      <td>{{ event.fromDate }} to {{ event.toDate }}</td>
+      <td>{{ event.location }}</td>
+      <td>{{ event.email }}</td>
+      <td>{{ event.description }}</td>
+      <td>{{ event.guestList }}</td>
+      <td><button type="button" (click)="deleteEventDetail(i)" class="btn btn-primary btn-sm">Delete</button>&nbsp;
+        <button type="button" (click)="editEventDetail(i,event)" class="btn btn-primary btn-sm">Edit</button></td>
+    </tr>
+  </tbody>
+</table>

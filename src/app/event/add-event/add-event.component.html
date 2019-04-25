@@ -1,0 +1,82 @@
+<form [formGroup]="eventDetailForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Titlle</label>
+    <input type="text" class="form-control" formControlName="title" placeholder="Enter Title">
+    <small class="form-text text-muted">required</small>
+  </div>
+  <div>
+    <div class="form-group">
+      <label for="example-date-input">From Date</label>
+      <input class="form-control" type="date" formControlName="fromDate">
+      <small class="form-text text-muted">required</small>
+    </div>
+    <div class="form-group">
+      <label for="example-date-input">To Date</label>
+      <input class="form-control" type="date" formControlName="toDate">
+      <small class="form-text text-muted">required</small>
+    </div>
+  </div>
+  <div *ngIf="!eventDetailForm.controls.allDay.value">
+    <div class="form-group">
+      <label for="example-date-input">From Time</label>
+      <input class="form-control" type="time" formControlName="fromTime">
+      <small class="form-text text-muted">required</small>
+    </div>
+    <div class="form-group">
+      <label for="example-date-input">To Time</label>
+      <input class="form-control" type="time" formControlName="toTime">
+      <small class="form-text text-muted">required</small>
+    </div>
+  </div>
+  <div class="form-group form-check">
+    <input type="checkbox" (change)="onAllDayClick()" class="form-check-input" formControlName="allDay">
+    <label class="form-check-label" for="exampleCheck1">All Day</label>
+  </div>
+  <h5>Event Details</h5>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Select Location</label>
+    <input type="text" (input)="searchLocations()" class="form-control" formControlName="location"
+      placeholder="Select Location">
+    <small class="form-text text-muted">required</small>
+  </div>
+
+  <ul class="list-group">
+    <li *ngFor="let location of locations" (click)="addLocation(location)" class="list-group-item">
+      {{location.description}}</li>
+
+  </ul>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email</label>
+    <input type="email" class="form-control" formControlName="email" aria-describedby="emailHelp"
+      placeholder="Enter email">
+    <small class="form-text text-muted">required & enter valid email</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Description</label>
+    <textarea class="form-control" formControlName="description" rows="3"></textarea>
+    <small class="form-text text-muted">required</small>
+  </div>
+  <h5>Add Guest</h5>
+  <div class="form-group">
+    <input type="text" formControlName="guestName" class="form-control">
+    <small class="form-text text-muted">required</small>
+    <span class="input-group-btn">
+      <button class="btn btn-primary" (click)="addGuest()" type="button">Add</button>
+    </span>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Guest</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let guest of guests">
+        <td>{{ guest }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <button type="submit" class="btn btn-primary">{{ buttonText }}</button>
+  <button type="button" routerLink="/view" class="btn btn-primary">View</button>
+  <button type="button" (click)="resetForm()" class="btn btn-primary">Cancel</button>
+</form>
